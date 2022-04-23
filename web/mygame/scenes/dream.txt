@@ -1,0 +1,242 @@
+You are having a dream. You know it's a dream because...
+*choice
+	#You just tried to pinch yourself.
+		*goto pinchself
+	#You have developed the skill of lucid dreaming.
+		*set lucid_dreamer true
+		*goto luciddream
+	#On second thought, is this a dream?
+		*set good_imagination true
+		*goto notdream
+
+*label pinchself
+How hard did you pinch yourself?
+*choice
+	#Not very hard.
+		*goto pinchsoft
+	#As hard as I could!
+		*goto pinchhard
+
+*label pinchsoft
+Yup, sure enough, when you pinch yourself, it feels numb and not as painful as real life.
+
+You are definitely dreaming. What do you see?
+*label dream1
+*choice
+	#A veil of mist.
+		*goto dreamveil
+	#A city street at night after a rain.
+		*goto dreamcity
+	#The deep woods.
+		*goto dreamwoods
+
+*label dreamveil
+You are standing at the edge of a small clearing, and the grass is cool and wet under your bare feet.
+
+From the mist emerges a figure.
+*choice
+	#The figure appears male.
+		*set c1g "Male"
+		*set c1n "Aurion"
+		*set c1p "he"
+		*set c1o "his"
+		*set c1t "him"
+	#The figure appears female.
+		*set c1g "Female"
+		*set c1n "Aria"
+		*set c1p "she"
+		*set c1o "her"
+		*set c1t "her"
+
+"Hello, Dreamwalker," the figure smiles, stopping perhaps twenty feet away. "My name is ${c1n}," ${c1p} says. "We have been waiting for you..."
+*choice
+	#This is too strange! Try to wake up.
+		*goto refusecall
+	#Ask why they have been waiting for you.
+		*goto askwhy
+	#Ask who they are.
+		*goto askwho
+
+*label refusecall
+The dream starts to fade, and ${c1n} starts to approach, ${c1o} brow creased.
+
+"Do not go," she says, her voice urgent. "You are in danger! Come back!"
+
+But it's too late. You wake up, and though at first you're a little concerned about what ${c1p} said, as you go about your day, like most dreams, it fades from your mind.
+
+What did you do this day?
+*label setprofession
+*choice
+	#Run your successful entrepreneurial business.
+		[to do]
+	#Kick back, just chillin'.
+		[to do]
+	#Go to school.
+		[to do]
+
+[Maybe can have good or bad day. Then...]
+
+You go to bed, and you have another dream except this time it's a NIGHTMARE!
+
+*goto pinchmare
+
+*label askwhy
+[b]Unfinished![/b] "Ask why they have been waiting for you." doesn't exist yet. Going to the next one...
+
+*label askwho
+[b]Unfinished![/b] "Ask who they are." doesn't exist yet. Returning to previous *choice...
+*return choice
+
+*label dreamcity
+[b]Unfinished![/b] "A city street at night after a rain." doesn't exist yet. Going to the next one...
+
+*label dreamwoods
+[b]Unfinished![/b] "The deep woods." doesn't exist yet. Going to the next one...
+
+*label pinchhard
+Really? You must really be into pain.
+*choice
+	#No, it was a nightmare!
+		*goto pinchmare
+	#No, it's just that if I do something, I do it all-out.
+		*set determined true
+		*goto pinchall
+	#I like exploring the boundaries between pain and pleasure, yes.
+		*set sadist true
+		*goto pinchsadism
+
+*label pinchmare
+You are dreaming you are running in terror from something horrible.
+
+It is...
+*choice
+	#A wild animal.
+		*goto chaseanimal
+	#A human with evil intent.
+		*goto chasehuman
+	#Neither animal nor human, just a presence.
+		*goto chasepresence
+
+*label chaseanimal
+[b]Unfinished![/b] "A wild animal." doesn't exist yet. Going to the next one...
+
+*label chasehuman
+[b]Unfinished![/b] "A human with evil intent." doesn't exist yet. Going to the next one...
+
+*label chasepresence
+You are in the deep woods, but you are comfortable here, for it's the only home you've ever known.
+
+Your bare feet move so fast they are a blur as you dash over the uneven ground, and you fear neither stick nor stone, for your feet always find a safe place to land.
+
+You need no path. You prefer the brambles, but now, something has invaded the sanctity of the domain in which you and your people once reigned unchallenged.
+
+You are a werewolf!
+*set clan "Werewolf"
+*page_break
+*label afternightmare
+Suddenly, you wake up. It's morning. Dawn's early sunlight floods cheerily through your window, and all seems right with the world... except... what the heck was up with that dream???
+
+Shuddering, you try to put it out of your mind. You get out of bed and look about your room.
+
+What do you see?
+*choice
+	#A teenage girl's tidy room. You live in Berkeley, CA.
+		*set age "18"
+		*set profession "High-school Senior"
+		*set tidy true
+		*set gender "Female"
+	#The bedroom of your high-rise apartment in New York City. You're a wealthy businessperson who identifies as neither female nor male.
+		*set age "35"
+		*set profession "Businessperson"
+		*set hometown "New York"
+		*set gender "Non-specified"
+	#A ramshackle old shack. You're a middle-aged man living off-grid in New Mexico.
+		*set age "50"
+		*set profession "Survivalist"
+		*set hometown "Somewhere in New Mexico"
+		*set gender "Male"
+	#None of these.
+		*goto pickstats
+
+*label pickstats
+All right. You get to decide.
+
+First, where do you live?
+*choice
+	#Berkeley, CA.
+		*set hometown "Berkeley, CA"
+	#New York, NY.
+		*set hometown "New York City"
+	#An unincorporated parcel of land way out in the middle of nowhere in the New Mexican desert.
+		*set hometown "Somewhere in New Mexico"
+	#Somewhere else.
+		*label pickhometown
+		Where do you live?
+		*input_text hometown
+		You live in ${hometown}. Is that right?
+		*choice
+			#Yes.
+				*goto pickage
+			#No.
+				*goto pickhometown
+
+*label pickage
+How old are you?
+*input_number age 18 120
+You are ${age} years old. Is that right?
+*choice
+	#Yes.
+		*goto pickgender
+	#No.
+		*goto pickage
+
+*label pickgender
+What is your gender?
+*choice
+	#Non-binary.
+		*set gender "Non-binary"
+	#Female.
+		*set gender "Female"
+	#Male.
+		*set gender "Male"
+	#Choose not to say.
+		*set gender "Unspecified"
+
+*label pickromance
+What is your sexual orientation?
+*choice
+	#On the asexual spectrum (includes demisexual, etc).
+		*set orientation "Asexual spectrum"
+	#On the pansexual spectrum.
+		*set orientation "Pansexual"
+	#Bisexual.
+		*set orientation "Bisexual"
+	#Homosexual.
+		*set orientation "Homosexual"
+	#Heterosexual.
+		*set orientation "Heterosexual"
+	#Choose not to say.
+		*set orientation "Unspecified"
+
+*label pinchall
+[b]Unfinished![/b] "No, it's just that if I do something, I do it all-out." doesn't exist yet. Going to the next one...
+
+*label pinchsadism
+[b]Unfinished![/b] "I like exploring the boundaries between pain and pleasure, yes." doesn't exist yet. Returning to previous *choice...
+*return choice
+
+*label luciddream
+You are generally able to instantly recognize when you're lucid dreaming.
+
+Once this happens, you can decide what you want to do, but you don't have the ability to actually change your surroundings or what's happening just by willing it yet.
+
+What do you see?
+
+*goto dream1
+
+*label notdream
+It might not be!
+
+What do you see?
+
+*goto dream1
